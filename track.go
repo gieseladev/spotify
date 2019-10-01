@@ -35,8 +35,8 @@ type SimpleTrack struct {
 	URI         URI `json:"uri"`
 }
 
-func (st SimpleTrack) String() string {
-	return fmt.Sprintf("TRACK<[%s] [%s]>", st.ID, st.Name)
+func (t SimpleTrack) String() string {
+	return fmt.Sprintf("TRACK<[%s] [%s]>", t.ID, t.Name)
 }
 
 // FullTrack provides extra track data in addition to what is provided by SimpleTrack.
