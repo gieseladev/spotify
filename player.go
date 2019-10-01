@@ -226,10 +226,10 @@ func (c *Client) PlayerRecentlyPlayedOpt(opt *RecentlyPlayedOptions) ([]Recently
 			v.Set("limit", strconv.FormatInt(int64(opt.Limit), 10))
 		}
 		if opt.BeforeEpochMs != 0 {
-			v.Set("before", strconv.FormatInt(int64(opt.BeforeEpochMs), 10))
+			v.Set("before", strconv.FormatInt(opt.BeforeEpochMs, 10))
 		}
 		if opt.AfterEpochMs != 0 {
-			v.Set("after", strconv.FormatInt(int64(opt.AfterEpochMs), 10))
+			v.Set("after", strconv.FormatInt(opt.AfterEpochMs, 10))
 		}
 		if params := v.Encode(); params != "" {
 			spotifyURL += "?" + params

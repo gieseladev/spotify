@@ -29,7 +29,7 @@ const (
 )
 
 func (st SearchType) encode() string {
-	types := []string{}
+	var types []string
 	if st&SearchTypeAlbum != 0 {
 		types = append(types, "album")
 	}

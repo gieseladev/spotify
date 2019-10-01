@@ -168,7 +168,7 @@ const (
 )
 
 func (at AlbumType) encode() string {
-	types := []string{}
+	var types []string
 	if at&AlbumTypeAlbum != 0 {
 		types = append(types, "album")
 	}

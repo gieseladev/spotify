@@ -99,7 +99,7 @@ func TestFollowUsersMissingScope(t *testing.T) {
 	})
 	defer server.Close()
 
-	err := client.FollowUser(ID("exampleuser01"))
+	err := client.FollowUser("exampleuser01")
 	serr, ok := err.(Error)
 	if !ok {
 		t.Fatal("Expected insufficient client scope error")
@@ -164,7 +164,7 @@ func TestFollowUsersInvalidToken(t *testing.T) {
 	})
 	defer server.Close()
 
-	err := client.FollowUser(ID("dummyID"))
+	err := client.FollowUser("dummyID")
 	serr, ok := err.(Error)
 	if !ok {
 		t.Fatal("Expected invalid token error")
@@ -179,7 +179,7 @@ func TestUserFollows(t *testing.T) {
 	client, server := testClientString(http.StatusOK, json)
 	defer server.Close()
 
-	follows, err := client.CurrentUserFollows("artist", ID("74ASZWbe4lXaubB36ztrGX"), ID("08td7MxkoHQkXnWAYD8d6Q"))
+	follows, err := client.CurrentUserFollows("artist", "74ASZWbe4lXaubB36ztrGX", "08td7MxkoHQkXnWAYD8d6Q")
 	if err != nil {
 		t.Error(err)
 		return

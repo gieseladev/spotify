@@ -145,7 +145,7 @@ func TestUserFollowsPlaylist(t *testing.T) {
 	client, server := testClientString(http.StatusOK, `[ true, false ]`)
 	defer server.Close()
 
-	follows, err := client.UserFollowsPlaylist(ID("2v3iNvBS8Ay1Gt2uXtUKUT"), "possan", "elogain")
+	follows, err := client.UserFollowsPlaylist("2v3iNvBS8Ay1Gt2uXtUKUT", "possan", "elogain")
 	if err != nil {
 		t.Error(err)
 	}
@@ -219,7 +219,7 @@ func TestRenamePlaylist(t *testing.T) {
 	client, server := testClientString(http.StatusOK, "")
 	defer server.Close()
 
-	if err := client.ChangePlaylistName(ID("playlist-id"), "new name"); err != nil {
+	if err := client.ChangePlaylistName("playlist-id", "new name"); err != nil {
 		t.Error(err)
 	}
 }
@@ -228,7 +228,7 @@ func TestChangePlaylistAccess(t *testing.T) {
 	client, server := testClientString(http.StatusOK, "")
 	defer server.Close()
 
-	if err := client.ChangePlaylistAccess(ID("playlist-id"), true); err != nil {
+	if err := client.ChangePlaylistAccess("playlist-id", true); err != nil {
 		t.Error(err)
 	}
 }
@@ -237,7 +237,7 @@ func TestChangePlaylistDescription(t *testing.T) {
 	client, server := testClientString(http.StatusOK, "")
 	defer server.Close()
 
-	if err := client.ChangePlaylistDescription(ID("playlist-id"), "new description"); err != nil {
+	if err := client.ChangePlaylistDescription("playlist-id", "new description"); err != nil {
 		t.Error(err)
 	}
 }
@@ -246,7 +246,7 @@ func TestChangePlaylistNamdAndAccess(t *testing.T) {
 	client, server := testClientString(http.StatusOK, "")
 	defer server.Close()
 
-	if err := client.ChangePlaylistNameAndAccess(ID("playlist-id"), "new_name", true); err != nil {
+	if err := client.ChangePlaylistNameAndAccess("playlist-id", "new_name", true); err != nil {
 		t.Error(err)
 	}
 }
@@ -255,7 +255,7 @@ func TestChangePlaylistNamdAccessAndDescription(t *testing.T) {
 	client, server := testClientString(http.StatusOK, "")
 	defer server.Close()
 
-	if err := client.ChangePlaylistNameAccessAndDescription(ID("playlist-id"), "new_name", "new description", true); err != nil {
+	if err := client.ChangePlaylistNameAccessAndDescription("playlist-id", "new_name", "new description", true); err != nil {
 		t.Error(err)
 	}
 }
@@ -264,7 +264,7 @@ func TestChangePlaylistNameFailure(t *testing.T) {
 	client, server := testClientString(http.StatusForbidden, "")
 	defer server.Close()
 
-	if err := client.ChangePlaylistName(ID("playlist-id"), "new_name"); err == nil {
+	if err := client.ChangePlaylistName("playlist-id", "new_name"); err == nil {
 		t.Error("Expected error but didn't get one")
 	}
 }
@@ -273,7 +273,7 @@ func TestAddTracksToPlaylist(t *testing.T) {
 	client, server := testClientString(http.StatusCreated, `{ "snapshot_id" : "JbtmHBDBAYu3/bt8BOXKjzKx3i0b6LCa/wVjyl6qQ2Yf6nFXkbmzuEa+ZI/U1yF+" }`)
 	defer server.Close()
 
-	snapshot, err := client.AddTracksToPlaylist(ID("playlist_id"), ID("track1"), ID("track2"))
+	snapshot, err := client.AddTracksToPlaylist("playlist_id", "track1", "track2")
 	if err != nil {
 		t.Error(err)
 	}

@@ -10,7 +10,7 @@ func TestFindAlbum(t *testing.T) {
 	client, server := testClientFile(http.StatusOK, "test_data/find_album.txt")
 	defer server.Close()
 
-	album, err := client.GetAlbum(ID("0sNOF9WDwhWunNAHPD3Baj"))
+	album, err := client.GetAlbum("0sNOF9WDwhWunNAHPD3Baj")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -30,7 +30,7 @@ func TestFindAlbumBadID(t *testing.T) {
 	client, server := testClientString(http.StatusNotFound, `{ "error": { "status": 404, "message": "non existing id" } }`)
 	defer server.Close()
 
-	album, err := client.GetAlbum(ID("asdf"))
+	album, err := client.GetAlbum("asdf")
 	if album != nil {
 		t.Fatal("Expected nil album, got", album.Name)
 	}
@@ -51,7 +51,7 @@ func TestFindAlbums(t *testing.T) {
 	client, server := testClientFile(http.StatusOK, "test_data/find_albums.txt")
 	defer server.Close()
 
-	res, err := client.GetAlbums(ID("41MnTivkwTO3UUJ8DrqEJJ"), ID("6JWc4iAiJ9FjyK0B59ABb4"), ID("6UXCm6bOO4gFlDQZV5yL37"), ID("0X8vBD8h1Ga9eLT8jx9VCC"))
+	res, err := client.GetAlbums("41MnTivkwTO3UUJ8DrqEJJ", "6JWc4iAiJ9FjyK0B59ABb4", "6UXCm6bOO4gFlDQZV5yL37", "0X8vBD8h1Ga9eLT8jx9VCC")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -89,7 +89,7 @@ func TestFindAlbumTracks(t *testing.T) {
 	client, server := testClientFile(http.StatusOK, "test_data/find_album_tracks.txt")
 	defer server.Close()
 
-	res, err := client.GetAlbumTracksOpt(ID("0sNOF9WDwhWunNAHPD3Baj"), 1, 0)
+	res, err := client.GetAlbumTracksOpt("0sNOF9WDwhWunNAHPD3Baj", 1, 0)
 	if err != nil {
 		t.Fatal(err)
 	}

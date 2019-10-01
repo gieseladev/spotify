@@ -82,7 +82,7 @@ func TestFindArtist(t *testing.T) {
 	client, server := testClientFile(http.StatusOK, "test_data/find_artist.txt")
 	defer server.Close()
 
-	artist, err := client.GetArtist(ID("0TnOYISbd1XYRBk9myaseg"))
+	artist, err := client.GetArtist("0TnOYISbd1XYRBk9myaseg")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -98,7 +98,7 @@ func TestArtistTopTracks(t *testing.T) {
 	client, server := testClientFile(http.StatusOK, "test_data/artist_top_tracks.txt")
 	defer server.Close()
 
-	tracks, err := client.GetArtistsTopTracks(ID("43ZHCT0cAZBISjO8DG9PnE"), "SE")
+	tracks, err := client.GetArtistsTopTracks("43ZHCT0cAZBISjO8DG9PnE", "SE")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -119,7 +119,7 @@ func TestRelatedArtists(t *testing.T) {
 	client, server := testClientFile(http.StatusOK, "test_data/related_artists.txt")
 	defer server.Close()
 
-	artists, err := client.GetRelatedArtists(ID("43ZHCT0cAZBISjO8DG9PnE"))
+	artists, err := client.GetRelatedArtists("43ZHCT0cAZBISjO8DG9PnE")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -145,7 +145,7 @@ func TestArtistAlbumsFiltered(t *testing.T) {
 	options := Options{}
 	options.Limit = &l
 
-	albums, err := client.GetArtistAlbumsOpt(ID("1vCWHaC5f2uS3yhpwWbIA6"), &options, &typ)
+	albums, err := client.GetArtistAlbumsOpt("1vCWHaC5f2uS3yhpwWbIA6", &options, &typ)
 	if err != nil {
 		t.Fatal(err)
 	}
